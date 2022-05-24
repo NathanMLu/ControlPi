@@ -5,9 +5,9 @@ public class Program {
 		return ledStatus;
 	}
 	
-	private string ToggleLed() {
+	private bool ToggleLed() {
 		ledStatus = !ledStatus;
-		return "Toggled LED";
+		return ledStatus;
 	}
 	
 	
