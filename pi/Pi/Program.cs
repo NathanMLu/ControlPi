@@ -1,8 +1,22 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+public class Program {
+	static int count = 0;
 
-app.MapGet("/", () => "testasdfasdf fat!");
+	private void incrementCounter() {
+		count++;
+	}
 
-app.MapGet("/hello", () => "hello World");
+	public static void Main(string[] args) {
+		var builder = WebApplication.CreateBuilder(args);
+		var app = builder.Build();
+		var program = new Program();
 
-app.Run();
+		app.MapGet("/", () => { return "Hello World!"; });
+
+		app.MapGet("/increment", () => {
+			program.incrementCounter();
+			return "Hello World! Count: " + count;
+		});
+
+		app.Run();
+	}
+}
