@@ -24,18 +24,17 @@ namespace ControlPi {
 
 			var webResponse = request.GetResponse();
 			var webStream = webResponse.GetResponseStream();
-		
-			var reader = new StreamReader(webStream);
-			var data = reader.ReadToEnd();
 
-			button.Text = data;
+			if (webStream != null) {
+				var reader = new StreamReader(webStream);
+				var data = reader.ReadToEnd();
 
-			// if (result == "1") {
-			// 	button.Text = "LED is on";
-			// } else {
-			// 	button.Text = "LED is off";
-			//
-			// button.Text = response.ToString();
+				if (data == "true") {
+					button.Text = "LED is ON";
+				} else {
+					button.Text = "LED is OFF";
+				}
+			}
 		}
 	}
 }
