@@ -5,13 +5,10 @@ using System.Net;
 
 class Program {
     private void ListenLed(int pin) {
-        Console.WriteLine("Starting to Listen");
 
         // Pin Controller
-        // var controller = new GpioController();
-        // controller.OpenPin(pin, PinMode.Output);
-
-        Console.WriteLine("Still Listening");
+        var controller = new GpioController();
+        controller.OpenPin(pin, PinMode.Output);
 
         // Request
         var url = "http://pi.somee.com/ledStatus";
@@ -20,24 +17,18 @@ class Program {
         var response = request.GetResponse();
 
         while (true) {
-            // var url = "http://pi.somee.com/ledStatus";
-            // var client = new HttpClient();
-            // var response = await client.GetAsync(url);
-            // var content = await response.Content.ReadAsStringAsync();
-            // Console.WriteLine("Hello There");
-            // Console.WriteLine(content);
-            
             var stream = response.GetResponseStream();
             var reader = new StreamReader(stream);
             var data = reader.ReadToEnd();
+            Console.WriteLine(data);
 
-            if (data == "true") {
-                Console.WriteLine("On");
-                // controller.Write(pin, PinValue.High);
-            } else {
-                Console.WriteLine("off");
-                // controller.Write(pin, PinValue.Low);
-            }
+            // if (data == "true") {
+            //     Console.WriteLine("On");
+            //     controller.Write(pin, PinValue.High);
+            // } else {
+            //     Console.WriteLine("off");
+            //     controller.Write(pin, PinValue.Low);
+            // }
             Thread.Sleep(1000);
 
             // controller.Write(pin, PinValue.High);
