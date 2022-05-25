@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Server.Models;
 
@@ -12,20 +13,15 @@ public class HomeController : Controller {
 	}
 
 	public IActionResult Index() {
-		try {
-			var status = TempData["status"];
-			if (status != null) {
-				ViewBag.Status = status;
-			} else {
-				ViewBag.Status = "Click Me";
-				ViewBag.Status = false;
-			}
-			Console.WriteLine("Status: " + status);
-		} catch (Exception e) {
-			Console.WriteLine("Your error: " + e);
-		}
+		// var client = new HttpClient();
+		// var url = "http://pi.somee.com/ledStatus";
+		// var response = client.GetAsync(url).Result;
+		// var result = response.Content.ReadAsStringAsync().Result;
+		// Console.WriteLine(result);
+
 		
-		// ViewBag.Status = "test";
+		ViewBag.Status = "test";
+
 		return View();
 	}
 

@@ -15,14 +15,14 @@ public class ApiController : Controller {
 
 	[HttpPost]
 	public bool LedStatus() {
-		TempData["status"] = _ledStatus;
+		// TempData["status"] = _ledStatus;
 		return _ledStatus;
 	}
 
 	// [HttpPost]
 	public bool ToggleLed() {
 		_ledStatus = !_ledStatus;
-		TempData["status"] = _ledStatus;
+		// TempData["status"] = _ledStatus;
 		return _ledStatus;
 	}
 }
