@@ -1,25 +1,26 @@
-public class Program {
-	private bool ledStatus;
+var builder = WebApplication.CreateBuilder(args);
 
-	private bool GetLedStatus() {
-		return ledStatus;
-	}
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
-	private bool ToggleLed() {
-		ledStatus = !ledStatus;
-		return ledStatus;
-	}
+var app = builder.Build();
 
-
-	public static void Main(string[] args) {
-		var builder = WebApplication.CreateBuilder(args);
-		var app = builder.Build();
-		var program = new Program();
-
-		app.MapGet("/", () => { return DateTime.Now.ToString(); });
-		app.MapGet("/ledStatus", () => program.GetLedStatus());
-		app.MapGet("/toggleLed", () => program.ToggleLed());
-
-		app.Run();
-	}
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment()) {
+	app.UseExceptionHandler("/Home/Error");
+	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+	app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+	name: "default",
+	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
