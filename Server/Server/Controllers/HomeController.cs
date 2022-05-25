@@ -12,6 +12,20 @@ public class HomeController : Controller {
 	}
 
 	public IActionResult Index() {
+		try {
+			var status = TempData["status"];
+			if (status != null) {
+				ViewBag.Status = status;
+			} else {
+				ViewBag.Status = "Click Me";
+				ViewBag.Status = false;
+			}
+			Console.WriteLine("Status: " + status);
+		} catch (Exception e) {
+			Console.WriteLine("Your error: " + e);
+		}
+		
+		// ViewBag.Status = "test";
 		return View();
 	}
 

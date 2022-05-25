@@ -31,14 +31,4 @@ public class Program {
 			Content = "<html><body><h1>Hello World!</h1></body></html>"
 		};
 	}
-
-	// private static ContentResult HomePage() {
-	// 	var fileContents = File.ReadAllText("Templates/index.html");
-	//
-	// 	return new ContentResult {Content = fileContents, ContentType = "text/html"};
-	// 	// var home = System.IO.File.ReadAllText("templates/home.html");
-	// 	// return home;
-	//
-	// 	// return DateTime.Now.ToString();
-	// }
 }
