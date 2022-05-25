@@ -4,19 +4,20 @@ using System.Threading;
 using System.Net;
 
 class Program {
-    private async void ListenLed(int pin) {
+    private void ListenLed(int pin) {
         Console.WriteLine("Starting to Listen");
 
         // Pin Controller
-        var controller = new GpioController();
-        controller.OpenPin(pin, PinMode.Output);
+        // var controller = new GpioController();
+        // controller.OpenPin(pin, PinMode.Output);
 
         Console.WriteLine("Still Listening");
 
         // Request
-        // var url = "http://pi.somee.com/ledStatus";
-        // var request = WebRequest.Create(url);
-        // request.Method = "GET";
+        var url = "http://pi.somee.com/ledStatus";
+        var request = WebRequest.Create(url);
+        request.Method = "GET";
+        var response = request.GetResponse();
 
         while (true) {
             // var url = "http://pi.somee.com/ledStatus";
@@ -25,24 +26,24 @@ class Program {
             // var content = await response.Content.ReadAsStringAsync();
             // Console.WriteLine("Hello There");
             // Console.WriteLine(content);
+            
+            var stream = response.GetResponseStream();
+            var reader = new StreamReader(stream);
+            var data = reader.ReadToEnd();
 
+            if (data == "true") {
+                Console.WriteLine("On");
+                // controller.Write(pin, PinValue.High);
+            } else {
+                Console.WriteLine("off");
+                // controller.Write(pin, PinValue.Low);
+            }
+            Thread.Sleep(1000);
 
-            // var response = request.GetResponse();
-            // var stream = response.GetResponseStream();
-            // var reader = new StreamReader(stream);
-            // var data = reader.ReadToEnd();
-
-            // if (data == "true") {
-            //     controller.Write(pin, PinValue.High);
-            // } else {
-            //     controller.Write(pin, PinValue.Low);
-            // }
+            // controller.Write(pin, PinValue.High);
             // Thread.Sleep(1000);
-
-            controller.Write(pin, PinValue.High);
-            Thread.Sleep(1000);
-            controller.Write(pin, PinValue.Low);
-            Thread.Sleep(1000);
+            // controller.Write(pin, PinValue.Low);
+            // Thread.Sleep(1000);
         }
     }
 
