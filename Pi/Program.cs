@@ -16,19 +16,29 @@ class Program {
         while (true) {
 
             // Calling Request
-            var request = WebRequest.Create(url);
-            request.Method = "GET";
-            var response = request.GetResponse();
-            var stream = response.GetResponseStream();
-            var reader = new StreamReader(stream);
-            var data = reader.ReadToEnd().ToString();
 
-            // Switching Led
-            if (data == "true") {
-                controller.Write(pin, PinValue.High);
-            } else {
-                controller.Write(pin, PinValue.Low);
-            }
+            try
+            {
+                 var request = WebRequest.Create(url);
+                request.Method = "GET";
+                var response = request.GetResponse();
+                var stream = response.GetResponseStream();
+                var reader = new StreamReader(stream);
+                var data = reader.ReadToEnd().ToString();
+
+                // Switching Led
+                if (data == "true") {
+                    controller.Write(pin, PinValue.High);
+                } else {
+                    controller.Write(pin, PinValue.Low);
+                }
+                }
+                catch (System.Exception)
+                {
+                    Console.WriteLine("Error");
+                    throw;
+                }
+            
 
             // Waiting for one second
             Thread.Sleep(1000);
