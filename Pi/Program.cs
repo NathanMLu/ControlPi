@@ -7,35 +7,31 @@ class Program {
     private void ListenLed(int pin) {
 
         // Pin Controller
-        // var controller = new GpioController();
-        // controller.OpenPin(pin, PinMode.Output);
+        var controller = new GpioController();
+        controller.OpenPin(pin, PinMode.Output);
 
         // Request
         var url = "http://pi.somee.com/ledStatus";
 
         while (true) {
+
+            // Calling Request
             var request = WebRequest.Create(url);
             request.Method = "GET";
             var response = request.GetResponse();
             var stream = response.GetResponseStream();
             var reader = new StreamReader(stream);
-            var data = reader.ReadToEnd();
-            
-            Console.WriteLine(data);
+            var data = reader.ReadToEnd().ToString();
 
-            // if (data == "true") {
-            //     Console.WriteLine("On");
-            //     controller.Write(pin, PinValue.High);
-            // } else {
-            //     Console.WriteLine("off");
-            //     controller.Write(pin, PinValue.Low);
-            // }
+            // Switching Led
+            if (data == "true") {
+                controller.Write(pin, PinValue.High);
+            } else {
+                controller.Write(pin, PinValue.Low);
+            }
+
+            // Waiting for one second
             Thread.Sleep(1000);
-
-            // controller.Write(pin, PinValue.High);
-            // Thread.Sleep(1000);
-            // controller.Write(pin, PinValue.Low);
-            // Thread.Sleep(1000);
         }
     }
 
