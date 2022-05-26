@@ -35,7 +35,6 @@ class Program {
 				throw;
 			}
 
-
 			// Waiting for one second
 			Thread.Sleep(1000);
 		}
