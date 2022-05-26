@@ -59,6 +59,7 @@
         <None Include="Properties\AndroidManifest.xml" />
     </ItemGroup>
     <ItemGroup>
+        <AndroidResource Include="Resources\drawable\old.png" />
         <AndroidResource Include="Resources\drawable\raspberry.png" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
         <AndroidResource Include="Resources\layout\Toolbar.axml" />
