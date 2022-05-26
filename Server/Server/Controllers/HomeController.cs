@@ -14,24 +14,24 @@ public class HomeController : Controller {
 
 	public IActionResult Index() {
 		// URL Request from API
-		// TODO: Update to api directory
 		var url = "http://pi.somee.com/api/ledStatus";
 		var request = WebRequest.Create(url);
 		request.Method = "POST";
-		
+
 		// Calling Request
 		var response = request.GetResponse();
 		var responseStream = response.GetResponseStream();
 		var reader = new StreamReader(responseStream);
 		var responseFromServer = reader.ReadToEnd().ToString();
-		
+
 		// Displaying Response		
 		if (responseFromServer == "true") {
 			ViewBag.Status = "LED IS ON";
-		} else {
+		}
+		else {
 			ViewBag.Status = "LED iS OFF";
 		}
-		
+
 		return View();
 	}
 
