@@ -28,6 +28,7 @@
                        FontAttributes="Bold" />
 
                 <Button Grid.Row="1" Grid.Column="0"
+                        x:Name="ToggleButton"
                         Text="CLICK ME"
                         FontSize="16"
                         Clicked="ToggleLed" />
