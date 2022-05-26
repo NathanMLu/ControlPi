@@ -29,7 +29,7 @@ public class HomeController : Controller {
 			ViewBag.Status = "LED IS ON";
 		}
 		else {
-			ViewBag.Status = "LED iS OFF";
+			ViewBag.Status = "LED IS OFF";
 		}
 
 		return View();
