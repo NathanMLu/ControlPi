@@ -18,7 +18,7 @@ namespace ControlPi {
 			var button = (Button)sender;
 			button.Text = "Loading...";
 			
-			var url = "http://pi.somee.com/toggleled";
+			var url = "http://pi.somee.com/api/toggleled";
 			var request = WebRequest.Create(url);
 			request.Method = "GET";
 
