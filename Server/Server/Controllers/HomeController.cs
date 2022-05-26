@@ -13,15 +13,25 @@ public class HomeController : Controller {
 	}
 
 	public IActionResult Index() {
-		// var client = new HttpClient();
-		// var url = "http://pi.somee.com/ledStatus";
-		// var response = client.GetAsync(url).Result;
-		// var result = response.Content.ReadAsStringAsync().Result;
-		// Console.WriteLine(result);
-
+		// URL Request from API
+		// TODO: Update to api directory
+		var url = "http://pi.somee.com/ledStatus";
+		var request = WebRequest.Create(url);
+		request.Method = "GET";
 		
-		ViewBag.Status = "test";
-
+		// Calling Request
+		var response = request.GetResponse();
+		var responseStream = response.GetResponseStream();
+		var reader = new StreamReader(responseStream);
+		var responseFromServer = reader.ReadToEnd().ToString();
+		
+		// Displaying Response		
+		if (responseFromServer == "true") {
+			ViewBag.Status = "LED IS ON";
+		} else {
+			ViewBag.Status = "LED iS OFF";
+		}
+		
 		return View();
 	}
 

@@ -19,7 +19,7 @@ public class ApiController : Controller {
 		return _ledStatus;
 	}
 
-	// [HttpPost]
+	[HttpPost]
 	public bool ToggleLed() {
 		_ledStatus = !_ledStatus;
 		// TempData["status"] = _ledStatus;
