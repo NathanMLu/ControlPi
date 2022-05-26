@@ -10,6 +10,7 @@
         <Frame BackgroundColor="DeepPink" Padding="24" CornerRadius="0">
             <Label Text="Welcome to Raspberry Pi!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36" />
         </Frame>
+        <Image Source="raspberry.png"/>
         
         <Button Text="CLICK ME" Clicked="ToggleLed" />
     </StackLayout>
