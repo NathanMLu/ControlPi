@@ -11,7 +11,7 @@ class Program {
         controller.OpenPin(pin, PinMode.Output);
 
         // Request
-        var url = "http://pi.somee.com/ledStatus";
+        var url = "http://pi.somee.com/api/ledStatus";
 
         while (true) {
 
@@ -19,8 +19,8 @@ class Program {
 
             try
             {
-                 var request = WebRequest.Create(url);
-                request.Method = "GET";
+                var request = WebRequest.Create(url);
+                request.Method = "POST";
                 var response = request.GetResponse();
                 var stream = response.GetResponseStream();
                 var reader = new StreamReader(stream);
