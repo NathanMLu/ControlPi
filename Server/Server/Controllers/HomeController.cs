@@ -15,9 +15,9 @@ public class HomeController : Controller {
 	public IActionResult Index() {
 		// URL Request from API
 		// TODO: Update to api directory
-		var url = "http://pi.somee.com/ledStatus";
+		var url = "http://pi.somee.com/api/ledStatus";
 		var request = WebRequest.Create(url);
-		request.Method = "GET";
+		request.Method = "POST";
 		
 		// Calling Request
 		var response = request.GetResponse();

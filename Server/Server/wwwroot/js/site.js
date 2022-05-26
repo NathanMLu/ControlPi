@@ -1,4 +1,31 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function updateToggle(status) {
+    status = $.trim(status);
+    let button = $(".toggle");
+    
+    if (status === "true") {
+        button.text("LED IS ON")
+    } else {
+        button.text("LED IS OFF")
+    }
+}
 
-// Write your JavaScript code.
+function main() {
+    let button = $(".toggle");
+
+    button.click(function () {
+        // Ajax request
+        $.ajax({
+            url: "/api/toggleled/",
+            type: "POST",
+            success: function (data) {
+                // console.log("Success: " + data);
+                updateToggle(data);
+            },
+            error: function (data) {
+                console.log("Error: " + data);
+            }
+        });
+    });
+}
+
+main();
