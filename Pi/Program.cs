@@ -10,7 +10,7 @@ class Program {
 		controller.OpenPin(pin, PinMode.Output);
 
 		// Request
-		var url = "http://pi.somee.com/api/ledStatus";
+		var url = "https://pi.somee.com/api/ledStatus";
 
 		while (true) {
 			// Calling Request

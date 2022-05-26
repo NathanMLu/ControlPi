@@ -23,7 +23,7 @@ namespace ControlPi {
 			while (true) {
 				try {
 					var webClient = new WebClient();
-					var response = webClient.UploadValues("http://pi.somee.com/api/ledstatus/", "POST",
+					var response = webClient.UploadValues("https://pi.somee.com/api/ledstatus/", "POST",
 						new NameValueCollection());
 					var responseString = Encoding.Default.GetString(response);
 
@@ -52,7 +52,7 @@ namespace ControlPi {
 
 			var webClient = new WebClient();
 			var response =
-				webClient.UploadValues("http://pi.somee.com/api/toggleled/", "POST", new NameValueCollection());
+				webClient.UploadValues("https://pi.somee.com/api/toggleled/", "POST", new NameValueCollection());
 			var responseString = Encoding.Default.GetString(response);
 
 			if (responseString == "true") {
