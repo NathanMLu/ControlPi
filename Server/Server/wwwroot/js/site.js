@@ -1,11 +1,11 @@
 ﻿function updateToggle(status) {
     status = $.trim(status);
-    let button = $(".toggle");
+    const button = $(".toggle");
 
     if (status === "true") {
-        button.text("LED IS ON")
+        button.text("LED IS ON");
     } else {
-        button.text("LED IS OFF")
+        button.text("LED IS OFF");
     }
 }
 
@@ -18,7 +18,7 @@ async function updateUI() {
                 updateToggle(data);
             },
             error: function (data) {
-                console.log("Error: " + data);
+                console.log(`Error: ${data}`);
             }
         });
     }, 1000);
@@ -27,7 +27,7 @@ async function updateUI() {
 function main() {
     $(document).ready(function () {
         updateUI();
-        let button = $(".toggle");
+        const button = $(".toggle");
         
         button.click(function () {
             // Ajax request
@@ -38,7 +38,7 @@ function main() {
                     updateToggle(data);
                 },
                 error: function (data) {
-                    console.log("Error: " + data);
+                    console.log(`Error: ${data}`);
                 }
             });
         });

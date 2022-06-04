@@ -79,10 +79,22 @@ body {
  */
 
 div[style*="height: 65px;"] {
-    display: none;
+    display: none !important;
 }
 
 div[style*="opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;"] {
+    display: none !important;
+}
+
+div[style*=" text-decoration: none; color:White; margin-right:6px; margin-left:6px;"] {
+    display: none !important;
+}
+
+div[style*=" text-decoration: none; color:White; margin-right:6px; margin-left:6px;"] {
+    display: none !important;
+}
+
+div[style*=" text-decoration: none; color:White; margin-right:6px; margin-left:6px; font-size: 10pt;"] {
     display: none !important;
 }
 
