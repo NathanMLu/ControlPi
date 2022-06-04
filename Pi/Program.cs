@@ -32,7 +32,6 @@ class Program {
 			}
 			catch (System.Exception) {
 				Console.WriteLine("Error");
-				throw;
 			}
 
 			// Waiting for one second
