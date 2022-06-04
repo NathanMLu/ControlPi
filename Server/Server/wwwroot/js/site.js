@@ -1,6 +1,6 @@
 ﻿function updateToggle(status) {
     status = $.trim(status);
-    let button = $(".toggle");
+    const button = $(".toggle");
 
     if (status === "true") {
         button.text("LED IS ON")
@@ -18,7 +18,7 @@ async function updateUI() {
                 updateToggle(data);
             },
             error: function (data) {
-                console.log("Error: " + data);
+                console.log(`Error: ${data}`);
             }
         });
     }, 1000);
