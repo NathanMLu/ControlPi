@@ -1,50 +1,51 @@
-﻿using System;
-using System.Device.Gpio;
-using System.Threading;
+﻿using System.Device.Gpio;
 using System.Net;
 
-class Program {
-	private void ListenLed(int pin) {
-		// Pin Controller
-		var controller = new GpioController();
-		controller.OpenPin(pin, PinMode.Output);
+namespace Pi;
 
-		// Request
-		var url = "https://pi.somee.com/api/ledStatus";
+internal class Program
+{
+    private static void ListenLed(int pin)
+    {
+        // Pin Controller
+        var controller = new GpioController();
+        controller.OpenPin(pin, PinMode.Output);
 
-		while (true) {
-			// Calling Request
-			try {
-				var request = WebRequest.Create(url);
-				request.Method = "POST";
-				var response = request.GetResponse();
-				var stream = response.GetResponseStream();
-				var reader = new StreamReader(stream);
-				var data = reader.ReadToEnd().ToString();
+        // Request
+        const string url = "https://pi.somee.com/api/ledStatus";
 
-				// Switching Led
-				if (data == "true") {
-					controller.Write(pin, PinValue.High);
-				}
-				else {
-					controller.Write(pin, PinValue.Low);
-				}
-			}
-			catch (System.Exception) {
-				Console.WriteLine("Error");
-				throw;
-			}
+        while (true)
+        {
+            // Calling Request
+            try
+            {
+                var request = WebRequest.Create(url);
+                request.Method = "POST";
+                var response = request.GetResponse();
+                var stream = response.GetResponseStream();
+                var reader = new StreamReader(stream);
+                var data = reader.ReadToEnd();
 
-			// Waiting for one second
-			Thread.Sleep(1000);
-		}
-	}
+                // Switching Led
+                controller.Write(pin, data == "true" ? PinValue.High : PinValue.Low);
+            }
+            catch (System.Exception)
+            {
+                Console.WriteLine("Error");
+                throw;
+            }
 
-	static void Main(string[] args) {
-		var program = new Program();
-		int pin = 17;
-		program.ListenLed(pin);
+            // Waiting for one second
+            Thread.Sleep(1000);
+        }
+    }
 
-		Console.WriteLine("Toggling LED: " + pin);
-	}
+    private static void Main()
+    {
+        var program = new Program();
+        const int pin = 17;
+        ListenLed(pin);
+
+        Console.WriteLine("Toggling LED: " + pin);
+    }
 }
